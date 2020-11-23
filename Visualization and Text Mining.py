@@ -9,12 +9,13 @@ import pandas as pd
 import numpy as np
 import re
 import os
-import matplotlib
+from matplotlib import pyplot as plt
 import seaborn as sns
 
 
 #set the format for console display
 pd.set_option("expand_frame_repr", False)
+pd.set_option("display.max_colwidth", 20)
 
 
 
@@ -54,6 +55,25 @@ mmedian = test["# of followers"].median()
 print(mmin)
 print(mmax)
 print(mmedian)
+
+# values = pd.Series([np.percentile(test['# of followers'], i) for i in range(5,100,5)])
+# values.plot.bar()
+# plt.show()
+
+
+bins = [mmin, 2085, 95714,  mmax]
+labels =['low','median','high']
+test['popularity_bin'] = pd.cut(test['# of followers'], bins,labels=labels)
+
+
+test['text']=test['text'].apply(str)
+test['char_count'] = test['text'].apply(len)
+
+
+
+test['avg_word'] = test['text'].apply(lambda x: len(str(x))/len(str(x).split(" ")))
+
+
 
 print(test.head(10))
 
