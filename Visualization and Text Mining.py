@@ -21,7 +21,7 @@ pd.set_option("display.max_colwidth", 20)
 
 #data preprocessing
 missing_value = ['N.A.',"--", "na","n/a"]
-path = "/Users/guanyanghu/SMU/PythonForDataScience/exp_tweet_week9.csv"
+path = 
 test = pd.read_csv(path, encoding='ISO-8859-1', skiprows=1, na_values=missing_value)
 
 """
